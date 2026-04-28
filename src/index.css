@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap');
+
+:root {
+  --app-bg: #0f0a28;
+  --card-bg: #1c1444;
+  --input-bg: #2a205a;
+  --accent: #8b5cf6;
+  --accent-glow: rgba(139, 92, 246, 0.3);
+  --text: #ffffff;
+  --text-dim: #94a3b8;
+  font-family: 'Cairo', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--app-bg);
+  color: var(--text);
+  min-height: 100vh;
+  direction: rtl;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* Base Styles (Shared/Mobile) */
+.modal-card {
+  width: 100%;
+  max-width: 440px;
+  background: var(--card-bg);
+  border-radius: 28px;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin: 2rem auto;
+  position: relative;
+}
+
+.logo-hexagon {
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, var(--accent), #d946ef);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.section-title {
+  background: rgba(0,0,0,0.2);
+  padding: 0.6rem;
+  border-radius: 12px;
+  text-align: center;
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+.main-input, .date-select {
+  width: 100%;
+  background: var(--input-bg);
+  border: 1px solid transparent;
+  border-radius: 14px;
+  padding: 1rem;
+  color: white;
+  font-family: inherit;
+  outline: none;
+  transition: 0.3s;
+}
+
+.main-input:focus, .date-select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 15px var(--accent-glow);
+}
+
+.date-dropdown-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.5fr;
+  gap: 0.8rem;
+}
+
+.date-select {
+  text-align: center;
+  appearance: none;
+  cursor: pointer;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255,255,255,0.03);
+  padding: 0.7rem 1rem;
+  border-radius: 14px;
+  cursor: pointer;
+}
+
+.custom-checkbox {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--accent);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-checkbox.checked { background: var(--accent); }
+
+.submit-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #7c3aed, #db46ef);
+  color: white;
+  border: none;
+  padding: 1.1rem;
+  border-radius: 16px;
+  font-weight: 900;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 1.1rem;
+}
+
+.submit-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(124, 58, 237, 0.4); }
+
+/* DESKTOP 100% OVERHAUL */
+@media (min-width: 1024px) {
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at top right, #1e1b4b 0%, #020617 100%);
+  }
+
+  .modal-card {
+    max-width: 1100px;
+    flex-direction: row;
+    padding: 0;
+    overflow: hidden;
+    height: 800px;
+  }
+
+  /* Split the modal into two panels */
+  .modal-card > * { order: 2; } /* Default order */
+  
+  .logo-header { display: none; }
+  .close-btn { right: 20px; top: 20px; }
+
+  /* Left Side: Form */
+  .modal-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* We need to re-group elements in App.jsx for a clean split, 
+     but we can simulate it with CSS Grid order if needed. 
+     Instead, I'll update App.jsx to have a left/right container. */
+}
+
+@media (max-width: 1023px) {
+  .logo-header { margin-bottom: 1rem; }
+}
